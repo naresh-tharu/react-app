@@ -53,19 +53,19 @@ const Routing = () => {
 
                     <Route path="banner" element={<Banner.BannerList />} />
                     <Route path="banner/create" element={<Banner.BannerCreate />} />
-                    <Route path="banner/:id" element={<Banner.BannerEdit/>}/>
-                    
+                    <Route path="banner/:id" element={<Banner.BannerEdit />} />
+
                     <Route path="brand" element={<Brand.BrandList />} />
                     <Route path="brand/create" element={<Brand.BrandCreate />} />
-                    <Route path="brand/:id" element={<Brand.BrandEdit/>}/>
+                    <Route path="brand/:id" element={<Brand.BrandEdit />} />
 
 
                     <Route path="category" element={<Category.CategoryList />} />
                     <Route path="category/create" element={<Category.CategoryCreate />} />
-                    <Route path="category/:id" element={<Category.CategoryEdit/>}/>
+                    <Route path="category/:id" element={<Category.CategoryEdit />} />
 
-                    <Route path="products" element={<Products.ProductList />} />
-                    <Route path="products/create" element={<Products.ProductCreate />} />
+                    <Route path="product" element={<Products.ProductList />} />
+                    <Route path="product/create" element={<Products.ProductCreate />} />
 
                     {/* TODO: User Management */}
                     <Route path="user" element={<User.UserList />} />

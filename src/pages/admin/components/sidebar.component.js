@@ -34,7 +34,7 @@ const AdminSidebar = () => {
                             <div className="sb-nav-link-icon"><FaUsers /></div>
                             User Management
                         </NavLink>
-                        <NavLink className="nav-link" to="/admin/products">
+                        <NavLink className="nav-link" to="/admin/product">
                             <div className="sb-nav-link-icon"><FaShoppingBasket /></div>
                             Products Management
                         </NavLink>

@@ -13,7 +13,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-const ProductFormComponent = ({submitEvent}) => {
+const ProductFormComponent = ({ submitEvent }) => {
     const [cats, setCats] = useState();
     const [brands, setBrands] = useState();
     let [attrs, setAttrs] = useState([{
@@ -53,11 +53,11 @@ const ProductFormComponent = ({submitEvent}) => {
         validationSchema: productSchema,
         onSubmit: (data) => {
             try {
-                data.attributes = attrs;
+                // data.attributes = attrs;
                 data.categories = data.categories.map((item) => item.value);
                 data.brand = data.brand.value;
                 let formData = new FormData();
-                data.images.map((item)=>{
+                data.images.map((item) => {
                     formData.append("images", item, item.name);
                 })
                 formData.append("name", data.name);
@@ -65,8 +65,13 @@ const ProductFormComponent = ({submitEvent}) => {
                 formData.append("description", data.description);
                 formData.append("price", data.price);
                 formData.append("discount", data.discount);
+                formData.append('brand', data.brand)
+                formData.append('isFeatured', data.isFeatured)
+                formData.append('status', data.status)
+                formData.append('attributes', JSON.stringify(attrs))
+                formData.append('seller', data.seller)
 
-                submitEvent(data);
+                submitEvent(formData);
             } catch (exception) {
 
             }
@@ -430,7 +435,7 @@ const ProductFormComponent = ({submitEvent}) => {
                                     if (errors && errors.length) {
                                         formik.setErrors({
                                             ...formik.errors,
-                                            image: errors.join(',')
+                                            images: errors.join(',')
                                         })
                                     } else {
                                         formik.setValues({
