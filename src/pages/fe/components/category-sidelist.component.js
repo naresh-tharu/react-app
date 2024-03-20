@@ -1,11 +1,28 @@
 import { Container, Row, Col } from "react-bootstrap"
 // import { GridList } from "../../../components/grid/grid-6-col.component"
 import { NavLink } from "react-router-dom"
+import { GridList } from "../../../components/grid/grid-6-col.component"
+import { useEffect, useState } from "react";
+import category from "../../admin/category/index"
 
 export const HomeCategorySideList = () => {
+    const [categoryList, setCategory] = useState();
+    const getCategory = async () => {
+        try {
+            let response = await category.categorySvc.listAllParentCategories();
+            if (response.status) {
+                setCategory(response.result);
+            }
+        } catch (error) {
+
+        }
+    }
+    useEffect(() => {
+        getCategory()
+    }, [])
     return (<>
 
-<Container>
+        {/* <Container>
     <Row className="justify-content-between">
         <Col lg={2} className="me-2">
             <Row className="align-items-center bg-white rounded-pill py-1">
@@ -38,8 +55,8 @@ export const HomeCategorySideList = () => {
             </Row>
         </Col>
     </Row>
-</Container>
-    {/* <Container className="my-5">
+</Container> */}
+        <Container className="my-5">
             <Row className="bg-light customheader">
                 <Col>
                     <h4>Category List....</h4>
@@ -47,14 +64,14 @@ export const HomeCategorySideList = () => {
             </Row>
             <hr />
             <Row>
-                <GridList />
-                <GridList />
-                <GridList />
-                <GridList />
-                <GridList />
-                <GridList />
+                {
+                    categoryList && categoryList.map((item, index) => (
+                        <GridList key={index} data={item} contentType={"category"} />
+                    ))
+                }
+
             </Row>
-        </Container> */}
+        </Container>
     </>)
 }
 export default HomeCategorySideList;

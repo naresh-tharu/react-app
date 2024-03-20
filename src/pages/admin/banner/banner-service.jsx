@@ -12,10 +12,10 @@ class BannerService extends HTTPService {
             throw exception;
         }
     }
-    updateBanner=async(data, id)=>{
+    updateBanner = async (data, id) => {
         try {
             let response = await this.patchrequest(
-                '/v1/banner/'+id,
+                '/v1/banner/' + id,
                 data,
                 { auth: true, file: true }
             )
@@ -36,6 +36,18 @@ class BannerService extends HTTPService {
             let data = await this.getRequest(
                 '/v1/banner?' + query.join("&"),
                 { auth: true }
+            )
+            return data;
+        } catch (err) {
+            throw err;
+        }
+    }
+    getBannerForHome = async (perpage, page) => {
+        try {
+
+            let data = await this.getRequest(
+                '/v1/banner/active',
+
             )
             return data;
         } catch (err) {

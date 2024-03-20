@@ -56,6 +56,10 @@ const ProductList = () => {
             selector: row => row.name,
         },
         {
+            name: 'Category',
+            selector: row => (row.categories.map((item) => item.name)).join(','),
+        },
+        {
             name: 'Price',
             selector: row => row.afterDiscount,
         },

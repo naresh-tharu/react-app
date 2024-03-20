@@ -12,10 +12,10 @@ class BrandService extends HTTPService {
             throw exception;
         }
     }
-    updateBrand=async(data, id)=>{
+    updateBrand = async (data, id) => {
         try {
             let response = await this.patchrequest(
-                '/v1/brand/'+id,
+                '/v1/brand/' + id,
                 data,
                 { auth: true, file: true }
             )
@@ -42,6 +42,19 @@ class BrandService extends HTTPService {
             throw err;
         }
     }
+
+    listAllActiveBrands = async (perpage, page) => {
+        try {
+
+            let data = await this.getRequest(
+                '/v1/brand/active'
+            )
+            return data;
+        } catch (err) {
+            throw err;
+        }
+    }
+
     deleteBrandById = async (id) => {
         try {
             let res = await this.deleteRequest(
